@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css"/>
+    <title>Back End Assessment</title>
+    <meta name="Author" content="Eleila Bradford"/>
+  </head>
+  <body class="container">
+    <button id="complimentButton">Get a compliment</button>
+    <button id="fortuneButton">Get a fortune</button>
+    <button id="inspirationButton">Be inspired</button>
+    <button id="jokeButton">Get a bad joke</button>
+    <input type="text" id="nameField" placeholder="Your name..."/>
+    <button id="titleButton">Get a random title</button>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      document.getElementById("complimentButton").onclick = function () {
+        axios.get("http://localhost:4000/api/compliment/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+    </script>
+    <script>
+      
+      document.getElementById("fortuneButton").onclick = function () {
+        axios.get("http://localhost:4000/api/fortune/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+    </script>
+    <script>
+        document.getElementById("inspirationButton").onclick = function () {
+        axios.get("http://localhost:4000/api/inspiration/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+
+    </script>
+    <script>
+        document.getElementById("jokeButton").onclick = function () {
+        axios.get("http://localhost:4000/api/jokes/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+
+    </script>
+    <script>
+        document.getElementById("titleButton").onclick = function (input) {
+          let name = document.getElementById("nameField").value
+          if(!name){alert('You must submit your name!')}else{
+          axios.put(`http://localhost:4000/api/titles/${name}`)
+            .then(function (response) {
+              const data = response.data;
+              document.getElementById("nameField").value = ""
+              alert(data);
+            });
+        }};
+
+    </script>
+  </body>
+</html>
